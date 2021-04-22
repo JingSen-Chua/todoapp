@@ -1,0 +1,284 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title></title>
+  <meta name="description" content="">
+  <meta name="author" content="SitePoint">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/9e30ce5ca4.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="overlay">
+        <div id="content-box">
+            <div id="content-box-top">
+                <div id="content-box-top-left">
+                    <span>
+                        <h2 id="tasktype" class="rubik" style="font-weight: normal;"></h2>
+                        <svg onclick="closeOverlay()" id="closeoverlay-btn-mobile" width="30" height="30" viewBox="0 0 69 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M34.5 66.125C17.034 66.125 2.875 51.966 2.875 34.5C2.875 17.034 17.034 2.875 34.5 2.875C51.966 2.875 66.125 17.034 66.125 34.5C66.125 51.966 51.966 66.125 34.5 66.125ZM34.5 60.375C48.7904 60.375 60.375 48.7904 60.375 34.5C60.375 20.2096 48.7904 8.625 34.5 8.625C20.2096 8.625 8.625 20.2096 8.625 34.5C8.625 48.7904 20.2096 60.375 34.5 60.375ZM25.033 48.033L34.5 38.5659L43.9671 48.033L48.033 43.9671L38.5659 34.5L48.033 25.033L43.9671 20.9671L34.5 30.4342L25.033 20.9671L20.9671 25.033L30.4342 34.5L20.9671 43.9671L25.033 48.033Z" fill="#5D79A6"/>
+                        </svg>
+                    </span>
+                    <ul id="tasklist" class="opensans">
+                    </ul>
+                </div>
+                <div id="content-box-top-right">
+                <svg onclick="closeOverlay()" id="closeoverlay-btn" width="50" height="50" viewBox="0 0 69 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M34.5 66.125C17.034 66.125 2.875 51.966 2.875 34.5C2.875 17.034 17.034 2.875 34.5 2.875C51.966 2.875 66.125 17.034 66.125 34.5C66.125 51.966 51.966 66.125 34.5 66.125ZM34.5 60.375C48.7904 60.375 60.375 48.7904 60.375 34.5C60.375 20.2096 48.7904 8.625 34.5 8.625C20.2096 8.625 8.625 20.2096 8.625 34.5C8.625 48.7904 20.2096 60.375 34.5 60.375ZM25.033 48.033L34.5 38.5659L43.9671 48.033L48.033 43.9671L38.5659 34.5L48.033 25.033L43.9671 20.9671L34.5 30.4342L25.033 20.9671L20.9671 25.033L30.4342 34.5L20.9671 43.9671L25.033 48.033Z" fill="#5D79A6"/>
+                        </svg>
+
+                        <div class="rings">
+                            <div class="percent1">
+                                <svg>
+                                    <circle class="circle1" cx="70" cy="70" r="70"></circle>
+                                    <circle class="circle2 overlaycircle" cx="70" cy="70" r="70"></circle>
+                                </svg>
+                            <div class="number rubik">
+                                <h2 style="font-weight:normal;"></h2>
+                                <h2 style="font-weight:normal;">Done</h2>
+                            </div>
+                            </div>
+                        </div>          
+                        
+                </div>
+            </div>
+
+            <div id="content-box-bottom">
+                <input id="addtask" type="text" class="opensans" placeholder="Type your task to add here">
+                <button onclick="addTask()">ADD TASK</button>
+            </div>
+
+            <div id="confirm-box-overlay">
+                <div id="confirm-box">
+                    <p class="opensans" style="font-weight: bold;">Are you sure you want to delete this task?</p>
+                    <p class="opensans" style="color:#898989">The process is irreversible</p>
+                    <div id="delete-yes-or-no">
+                        <button id="delete-yes" onclick="deleteTask()">YES</button>
+                        <button id="delete-no" style="background: #F3F7FF; color:#5D79A6;" onclick="closeConfirmOverlay()";>NO</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="confirm-complete-box-overlay">
+                <div id="confirm-complete-box">
+                    <p class="opensans" style="font-weight: bold;">Is the task completed?</p>
+                    <p class="opensans" style="color:#898989">The task will be removed</p>
+                    <div id="confirm-complete-yes-or-no">
+                        <button onclick="deleteTask()">YES</button>
+                        <button style="background: #F3F7FF; color:#5D79A6;" onclick="closeConfirmOverlay()";>NO</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="date-box-overlay">
+                <div id="date-box">
+                    <div id="date-box-top">
+                        <h3 class="rubik" style="font-weight: normal; text-transform: uppercase;">Set due date</h3>
+                        <svg onclick="closeDate()" width="40" height="40" viewBox="0 0 69 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M34.5 66.125C17.034 66.125 2.875 51.966 2.875 34.5C2.875 17.034 17.034 2.875 34.5 2.875C51.966 2.875 66.125 17.034 66.125 34.5C66.125 51.966 51.966 66.125 34.5 66.125ZM34.5 60.375C48.7904 60.375 60.375 48.7904 60.375 34.5C60.375 20.2096 48.7904 8.625 34.5 8.625C20.2096 8.625 8.625 20.2096 8.625 34.5C8.625 48.7904 20.2096 60.375 34.5 60.375ZM25.033 48.033L34.5 38.5659L43.9671 48.033L48.033 43.9671L38.5659 34.5L48.033 25.033L43.9671 20.9671L34.5 30.4342L25.033 20.9671L20.9671 25.033L30.4342 34.5L20.9671 43.9671L25.033 48.033Z" fill="black"/>
+                        </svg>                            
+                    </div>
+                    <div id="date-top">
+                       <div>
+                           <p id="monthYearSelected" class="rubik">MARCH 2021</p>
+                           <svg width="30" height="30" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.04175 12.2708L15.5001 18.7291L21.9584 12.2708H9.04175Z" fill="black" fill-opacity="0.54"/>
+                            </svg>                            
+                        </div>
+                        <div>
+                            <svg onclick="prevMth()" width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M20.0001 38.3334C9.87486 38.3334 1.66675 30.1253 1.66675 20.0001C1.66675 9.87486 9.87486 1.66675 20.0001 1.66675C30.1253 1.66675 38.3334 9.87486 38.3334 20.0001C38.3334 30.1253 30.1253 38.3334 20.0001 38.3334ZM20.0001 35.0001C28.2844 35.0001 35.0001 28.2844 35.0001 20.0001C35.0001 11.7158 28.2844 5.00008 20.0001 5.00008C11.7158 5.00008 5.00008 11.7158 5.00008 20.0001C5.00008 28.2844 11.7158 35.0001 20.0001 35.0001ZM28.3334 18.3335H17.357L21.1785 14.512L18.8215 12.155L10.9763 20.0001L18.8215 27.8453L21.1785 25.4883L17.357 21.6668H28.3334V18.3335Z" fill="black"/>
+                            </svg>
+                            <svg onclick="nextMth()" width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M20.0001 38.3334C9.87486 38.3334 1.66675 30.1253 1.66675 20.0001C1.66675 9.87486 9.87486 1.66675 20.0001 1.66675C30.1253 1.66675 38.3334 9.87486 38.3334 20.0001C38.3334 30.1253 30.1253 38.3334 20.0001 38.3334ZM20.0001 35.0001C28.2844 35.0001 35.0001 28.2844 35.0001 20.0001C35.0001 11.7158 28.2844 5.00008 20.0001 5.00008C11.7158 5.00008 5.00008 11.7158 5.00008 20.0001C5.00008 28.2844 11.7158 35.0001 20.0001 35.0001ZM11.6667 21.6668H22.6431L18.8216 25.4883L21.1786 27.8453L29.0238 20.0001L21.1786 12.155L18.8216 14.512L22.6431 18.3335H11.6667V21.6668Z" fill="black"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="date-bottom" class="opensans">
+                        <p>SUN</p>
+                        <p>MON</p>
+                        <p>TUE</p>
+                        <p>WED</p>
+                        <p>THU</p>
+                        <p>FRI</p>
+                        <p>SAT</p>
+                    </div>
+                    <div id="date-buttons">
+                        <button onclick = "addOneTimeTaskToday()">TODAY</button>
+                        <button onclick="addOneTimeTask()">CONFIRM</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="mainCompleteOneTimeTask">
+        <div id="mainCompleteOneTimeTaskBox">
+            <p class="opensans" style="font-weight: bold;">Is the task completed?</p>
+            <p class="opensans" style="color:#898989">The task will be removed</p>
+            <div id="mainCompleteBtn">
+                <button onclick="completeOTMain()">YES</button>
+                <button style="background: #F3F7FF; color:#5D79A6;" onclick="closeCompleteOTMain()";>NO</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="goalOverlay">
+        <div id="goalBlackoverlay">
+            <div id="goalBlackOverlayWin"></div>
+        </div>
+        <div id="goalOverlay-box">
+            <div id="goalOverlay-top">
+                <h2 class="rubik">LONG-TERM GOAL</h2>
+                <svg onclick="closeGoal()" width="50" height="50" viewBox="0 0 69 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M34.5 66.125C17.034 66.125 2.875 51.966 2.875 34.5C2.875 17.034 17.034 2.875 34.5 2.875C51.966 2.875 66.125 17.034 66.125 34.5C66.125 51.966 51.966 66.125 34.5 66.125ZM34.5 60.375C48.7904 60.375 60.375 48.7904 60.375 34.5C60.375 20.2096 48.7904 8.625 34.5 8.625C20.2096 8.625 8.625 20.2096 8.625 34.5C8.625 48.7904 20.2096 60.375 34.5 60.375ZM25.033 48.033L34.5 38.5659L43.9671 48.033L48.033 43.9671L38.5659 34.5L48.033 25.033L43.9671 20.9671L34.5 30.4342L25.033 20.9671L20.9671 25.033L30.4342 34.5L20.9671 43.9671L25.033 48.033Z" fill="black"/>
+                </svg>
+            </div>
+    
+            <div id="goalOverlay-btns">
+                <button id="goalBtnCurrent" onclick="generateCurrentGoal()">CURRENT GOAL</button>
+                <button id="goalBtnAll" onclick="generateAllGoals()" style="margin-left: 1em;">VIEW ALL GOALS</button>
+                <button id="goalBtnAdd" onclick="generateAddGoal()" style="margin-left: 1em;"><span style="font-size: 1.2em">+</span> ADD GOAL</button>
+            </div>
+    
+            <div id="goalOverlay-content">
+    
+            </div>
+        </div>
+    </div>
+    <div id="header">
+        <h3 class="rubik" style="font-size:2em;font-weight:normal;"><span style="color:#5D79A6;">f</span>illip</h3>
+        <span id="dateandtime" class="rubik" style="font-size: 1em">
+            <p id="date"></p>
+            <p id="time"></p>
+        </span>
+        </div>
+
+        <div id="container">
+            <div id="row1">
+
+                <div id="current-task">
+                    <h3 class="rubik">CURRENT TASK</h3>
+                    <div id="currentTask1">
+                        <span>
+                            <h4 id="current-task-type" class="rubik">PLACEHOLDER TYPE</h4>
+                        <p id="current-task-text" class="opensans">PLACEHOLDER TEXT</p>
+                    </span>
+                    <div id="current-task-button-div">
+                        <button id="current-task-change" onclick="manageBtn(this)">SET ACTIVE TASK</button>
+                        <br>
+                        <button id="current-task-done" onclick="completeActive(this)">TASK COMPLETED</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="current-goal">
+
+                <div id="goal-text">
+                    <span>
+                        <h3 class="rubik">CURRENT GOAL</h3>
+                        <p class="rubik" id="mainGoalName">PLACEHOLDER</p>
+                    </span>
+                    <div>
+                        <p id="goal-step" class="opensans">PLACEHOLDER TEXT</p>
+                        <p id="goal-step-text" class="opensans">PLACEHOLDER TEXT</p>
+                    </div>
+                </div>
+
+                <div id="goal-progress">
+                    <div id="progressbar">
+                        <div id="background-bar"><div id="actual-bar"></div></div>
+                        <div  id="main-goal-text">
+                            <p id="main-goal-percent" class="rubik">0% COMPLETED</p>
+                            <p id="main-goal-days-left" class="rubik">X DAYS LEFT</p>
+                        </div>
+                    </div>
+                    <button id="manage-goals" onclick="openGoal()" >MANAGE GOALS</button>
+                </div>
+
+            </div>
+        </div>
+        <br><br>
+        <div id="row2">
+
+            <div id="onetime-task">
+                <h3 class="rubik">ONE TIME TASK</h3>
+                <ul id="one-time-list">
+
+                </ul>
+                <button id="manage-onetime" onclick="manageBtn(this)">MANAGE ONE TIME TASKS</button>
+            </div>
+
+            <div id="daily-task">
+                <h3 class="rubik">DAILY TASK</h3>
+                <div class="ringsmain">
+                    <div class="percentmain">
+                        <svg>
+                            <circle class="circle1main" cx="50" cy="50" r="50"></circle>
+                            <circle class="circle2main dailycircle" cx="50" cy="50" r="50"></circle>
+                        </svg>
+                    <div class="numbermain rubik">
+                        <h2 style="font-weight:normal;" id="dailypercentnum">50%</h2>
+                        <h2 style="font-weight:normal;">Done</h2>
+                    </div>
+                    </div>
+                </div>
+                <ul id="daily-task-list" class="mainpage-tasklist opensans">
+
+                </ul>
+                <button id="manage-daily" onclick="manageBtn(this)">MANAGE DAILY TASKS</button>
+            </div>
+
+            <div id="weekly-task">
+                <h3 class="rubik">WEEKLY TASK</h3>
+                <div class="ringsmain">
+                    <div class="percentmain">
+                        <svg>
+                            <circle class="circle1main" cx="50" cy="50" r="50"></circle>
+                            <circle class="circle2main weeklycircle" cx="50" cy="50" r="50"></circle>
+                        </svg>
+                    <div class="numbermain rubik">
+                        <h2 style="font-weight:normal;" id="weeklypercentnum">50%</h2>
+                        <h2 style="font-weight:normal;">Done</h2>
+                    </div>
+                    </div>
+                </div>
+                <ul id="weekly-task-list" class="mainpage-tasklist opensans">
+
+                </ul>
+                <button id="manage-weekly" onclick="manageBtn(this)">MANAGE WEEKLY TASKS</button>
+            </div>
+
+            <div id="monthly-task">
+                <h3 class="rubik">MONTHLY TASK</h3>
+                <div class="ringsmain">
+                    <div class="percentmain">
+                        <svg>
+                            <circle class="circle1main" cx="50" cy="50" r="50"></circle>
+                            <circle class="circle2main monthlycircle" cx="50" cy="50" r="50"></circle>
+                        </svg>
+                    <div class="numbermain rubik">
+                        <h2 style="font-weight:normal;" id="monthlypercentnum">50%</h2>
+                        <h2 style="font-weight:normal;">Done</h2>
+                    </div>
+                    </div>
+                </div>
+                <ul id="monthly-task-list" class="mainpage-tasklist opensans">
+
+                </ul>
+                <button id="manage-monthly" onclick="manageBtn(this)">MANAGE MONTHLY TASKS</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>

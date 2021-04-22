@@ -1,0 +1,990 @@
+:root {
+    --dashoffset: 440;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+button {
+    font-family: 'Rubik';
+    font-weight: normal;
+    text-transform: uppercase;
+    background-color: #5D79A6;
+    color: #E8ECF2;
+    border: none;
+    padding: 0.75em;
+    height: fit-content;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+}
+.opensans {
+    font-family: 'Open Sans'
+}
+
+.rubik {
+    font-family: 'Rubik';
+}
+
+.completed {
+    color: #898989;
+    text-decoration-line: line-through;
+}
+
+.completed p  {
+    text-decoration-line: line-through;
+}
+
+#overlay {
+    position: absolute;
+    width:100vw;
+    height: 100vh;
+    background: rgba(128, 128, 128, 0.5);
+    justify-content: center;
+    align-items: center;
+    display:none;
+    z-index: 1;
+}
+
+#content-box {
+    height:60%;
+    width: 40%;
+    background: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#content-box-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 2em;
+}
+
+#content-box-bottom {
+    display: flex;
+    justify-content: space-between;
+    padding: 2em;
+}
+
+#content-box-bottom input {
+    width: 75%;
+    border-radius: 10px;
+    border-width: 1px;
+    padding: 0 1em;
+    outline: none;
+}
+
+#content-box-top-left  {
+    width: 60%;
+}
+
+#tasklist li {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.25em;
+}
+
+#tasklist li div {
+    display: flex;
+    align-items: baseline;
+}
+
+#tasklist p {
+    margin-left: 1em;
+}
+
+#confirm-box-overlay {
+    position: absolute;
+    width:inherit;
+    height: inherit;
+    background: rgba(128, 128, 128, 0.5);
+    justify-content: center;
+    align-items: center;
+    display:none;
+}
+
+#confirm-box {
+    background: white;
+    padding: 2em;
+    border-radius: 10px;
+    height: 40%;
+    width: 40%;
+}
+
+#content-box-top-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 40%;
+}
+
+#date-box-overlay {
+    position: absolute;
+    width:inherit;
+    height: inherit;
+    background: rgba(128, 128, 128, 0.5);
+    justify-content: center;
+    align-items: center;
+    display:none;
+}
+
+#date-box {
+    background: white;
+    padding: 2em;
+    border-radius: 10px;
+    height: 85%;
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+}
+
+#date-box div {
+    display: flex;
+}
+
+#date-box-top {
+    justify-content: space-between;
+}
+
+#date-top {
+    justify-content: space-between;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#date-top svg {
+    margin-left: 1em;
+}
+
+#date-top div {
+    align-items: center;
+}
+#date-bottom {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    text-align: center;
+}
+
+#date-bottom p {
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+}
+
+#date-buttons {
+    justify-content: flex-end;
+}
+
+#date-buttons button {
+    margin-left: 2em;
+}
+
+#confirm-complete-box-overlay {
+    position: absolute;
+    width:inherit;
+    height: inherit;
+    background: rgba(128, 128, 128, 0.5);
+    justify-content: center;
+    align-items: center;
+    display:none;
+}
+
+#confirm-complete-box {
+    background: white;
+    padding: 2em;
+    border-radius: 10px;
+    height: 40%;
+    width: 40%;
+}
+
+#confirm-complete-yes-or-no {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2em;
+}
+#confirm-complete-yes-or-no button {
+width: 45%;
+}
+
+#one-time-list div {
+    display: flex;
+    justify-content:  start;
+    align-items: center;
+}
+
+#one-time-list {
+    width: 100%;
+}
+
+#one-time-list li {
+    font-size: 0.8em;
+    margin-bottom: 1em !important;
+    list-style: none;
+}
+
+#mainCompleteOneTimeTask {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(128, 128, 128, 0.5);
+    justify-content: center;
+    align-items: center;
+    display:none;
+    z-index: 2;
+}
+
+#mainCompleteOneTimeTaskBox {
+    background: white;
+    padding: 2em;
+    border-radius: 10px;
+    height: 20%;
+    width: 15%;
+}
+
+#mainCompleteBtn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+}
+
+#mainCompleteBtn button {
+    width: 30%;
+}
+
+
+#goalOverlay {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(128, 128, 128, 0.5);
+    justify-content: center;
+    align-items: center;
+    display:none;
+    z-index: 2;
+}
+
+#goalOverlay-box {
+    background: white;
+    padding: 2em;
+    border-radius: 10px;
+    height: 70%;
+    width: 50%;
+}
+
+#goalOverlay-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+#goalOverlay-btns {
+    display: flex;
+}
+
+#currentGoal-left {
+    height: 100%;
+    width: 60%;
+}
+
+#currentGoal-list ul {
+    list-style: none;
+}
+
+#currentGoal-list li {
+    display: flex;
+    align-items: center;
+}
+
+#currentGoal-list li p {
+    margin-left: 1em;
+}
+
+#goalOverlay-content {
+    margin-top: 2em;
+    display: flex;
+    height: 80%;
+
+}
+
+#currentGoal-right {
+    height: 100%;
+    width: 40%;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 0.8em;
+}
+
+#progressBar {
+    width: 100%;
+    background-color: #EDF4FF;
+    border-radius: 15px;
+}
+
+#bar {
+    width: 0%;
+    height: 15px;
+    background-color: #5D79A6;
+    border-radius: 15px;
+}
+
+#progressBarText {
+    display: flex;
+    justify-content: space-between;
+    color: #3C5680;
+    margin-top: 0.5em;
+
+}
+
+.allGoals-div {
+    width: 100%;
+    background-color: #F2F2F2;
+    border-radius: 10px;
+    margin-bottom: 1em;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.allGoals-div-left {
+    width: 40%;
+}
+
+.allGoals-div-left div {
+    display: flex;
+    align-items: center;
+}
+
+.goalsActive {
+    color: #E8ECF2;
+    background-color: #5D79A6;
+}
+
+.goalsInactive {
+    color: #E8ECF2;
+    background-color: #999999;
+}
+.allGoals-div-left div p {
+    font-size:0.8em; 
+    margin-left: 1em;
+    padding: 0.5em 1em;
+    border-radius: 20px;
+}
+
+.allGoals-div-left span {
+    display: flex;
+    justify-content: space-between;
+}
+
+.allGoals-div-right {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.allGoals-div-right button {
+    margin: 0.5em;
+    height: 50%;
+    width: 50%;
+}
+
+#addGoal-left {
+    width: 50%;
+}
+
+.form {
+    position: relative;
+    height: 50px;
+    overflow: hidden;
+    width: 80%;
+}
+
+.form input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    color: #5D79A6;
+    padding-top: 20px;
+    outline: none;
+}
+
+.form input:focus + .label-name::after,
+.form input:valid + .label-name::after {
+    transform: translateX(0%);
+}
+
+.form label {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-bottom: 1px solid grey;
+}
+
+.form label::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    bottom: -1px;
+    border-bottom: 3px solid #5D79A6;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.content-name {
+    position: absolute;
+    bottom: 5px;
+    left: 0px;
+    transition: all 0.3s ease;
+}
+
+.form input:focus + .label-name .content-name,
+.form input:valid + .label-name .content-name {
+    transform: translateY(-150%);
+    font-size: 0.8em;
+}
+
+#goalDate-bottom {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    text-align: center;
+}
+
+.selectedDay {
+    color: white;
+    background: #5d79a6;
+    border-radius: 10px;
+}
+.percentmain circle {
+    fill: none;
+    stroke-dasharray: 378;
+    stroke-width: 10;
+    position: absolute;
+    transform: rotate(90deg) translate(10px, -200px)
+}
+
+.ringsmain {
+    height: 30%;
+    margin-top: -2em;
+    margin-bottom: -2em;
+}
+
+.numbermain {
+    position: relative;
+    bottom: 115px;
+    text-align: center;
+    font-size: 0.8em;
+    z-index: 0;
+}
+.percent1 svg {
+    height: 170px;
+    width: 170px;
+    margin-top: 3em;
+    margin-right: 1em;
+}
+
+.percent1 circle {
+    fill: none;
+    stroke-dasharray: 440;
+    stroke-width: 10;
+    position: absolute;
+    transform: rotate(90deg) translate(10px, -150px);
+    
+}
+
+.percentanimate {
+    animation: percent 0.5s linear;
+}
+
+@keyframes percent {
+    0% {
+        stroke-dashoffset: var(--dashoffset);
+       }
+}
+
+.circle1, .circle1main{
+    stroke-dashoffset: 0;
+    stroke: #E3E3E3;
+  }
+  
+  .circle2, .circle2main {
+    stroke-dashoffset: 440;
+    stroke: #AEBCD3;
+    animation: percent 0.5s linear;
+  }
+
+  .number {
+    position: relative;
+    bottom: 120px;
+    right: 13px;
+    text-align: center;
+}
+
+#delete-yes-or-no {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2em;
+}
+#delete-yes-or-no button {
+width: 45%;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(180deg, #D5E3FB 44.62%, #F4F8FF 100%);
+    overflow: hidden;
+}
+#header {
+    display: flex;
+    height: 7vh;
+    justify-content: space-between;
+    padding: 2em;
+    margin-left:1em;
+    margin-right:1em;
+}
+
+#dateandtime {
+    display:flex;
+    justify-content: space-between;
+    width: 20%;
+}
+
+#container {
+    height: 100%;
+    padding: 2em;
+    width: 80%;
+}
+
+#row1 {
+    height: 25%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#current-task, #current-goal {
+    border-radius: 15px;
+}
+#current-task {
+    width: 30%;
+    height: 100%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5em;
+}
+
+#current-task span {
+    align-self: flex-end;
+}
+
+#current-task div {
+    display: flex;
+    justify-content: space-between;
+}
+
+#current-task-button-div {
+    flex-direction: column;
+    width: 40%;
+}
+
+
+#current-goal {
+    width: 65%;
+    height: 100%;
+    background: white;
+    display:flex;
+    justify-content: space-between;
+    padding: 1.5em;
+}
+
+#goal-text {
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+}
+
+#goal-progress {
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+}
+
+#row2 {
+    height: 60%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#onetime-task, #daily-task, #weekly-task, #monthly-task {
+    width: 23%;
+    height: 100%;
+    background: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#row2 li {
+    margin:0.25em;
+}
+#row2 li p {
+    margin-left: 1em;
+}
+
+.mainpage-tasklist {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 40%;
+}
+
+.mainpage-tasklist li {
+    display: flex;
+    align-items: baseline;
+    font-size: 0.8em;
+}
+
+.oneTime {
+    display: flex;
+    flex-direction: column;
+    background-color: lightgray;
+    padding: 1em;
+    border-radius: 15px;
+}
+
+.oneTime div {
+    justify-content: space-between;
+}
+
+#goal-progress {
+    width: 50%;
+}
+
+#background-bar {
+    width: 100%;
+    height: 15px;
+    background-color:#EDF4FF;
+    border-radius: 15px;
+}
+
+#actual-bar {
+    height: 100%;
+    width: 25%;
+    background-color: #5D79A6;
+    border-radius: 15px;
+}
+
+#main-goal-text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8em;
+    margin-top:0.5em;
+}
+
+#goalBlackoverlay {
+    height: inherit;
+    width: inherit;
+    position: absolute;
+    background-color: rgba(128, 128, 128, 0.5);
+    justify-content: center;
+    align-items: center;
+    display:none;
+}
+
+#goalBlackOverlayWin {
+    height: 20%;
+    width: 30%;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/*#progressBar {
+    width: 100%;
+    background-color: #EDF4FF;
+    border-radius: 15px;
+}
+
+#bar {
+    width: 0%;
+    height: 15px;
+    background-color: #5D79A6;
+    border-radius: 15px;
+}*/
+
+#goalBtnCurrent, #goalBtnAll, #goalBtnAdd {
+    background-color: #999999;
+    color: #E8ECF2
+}
+
+.activeGoalBtn  {
+    background-color: #5D79A6 !important;
+    color: #E8ECF2
+}
+
+#closeoverlay-btn-mobile {
+    display: none;
+}
+
+#tasktype {
+    padding-bottom: 1em;
+}
+
+.mobile {
+    display : none;
+}
+
+#goalMobileBtn-div {
+    display: none;
+}
+
+#goalOverlay-content {
+    flex-direction: row;
+}
+
+@media only screen and (max-width : 500px) {
+    
+    * {
+        overflow-y: auto;
+    }
+    #dateandtime {
+        display:none;
+    }
+
+    #container {
+        width: 100%;
+        padding: 1em;
+    }
+
+    #row1 {
+        flex-direction: column;
+        height: auto;
+    }
+
+    #current-task, #current-goal {
+        width: 100%;
+        margin-top: 1em;
+    }
+
+    #row2 {
+        flex-direction: column;
+        height: auto;
+    }
+
+    #onetime-task, #daily-task, #weekly-task, #monthly-task {
+        width: 100%;
+        margin-top: 1em;
+    }
+    
+    .percentmain,.ringsmain{
+        display: none;
+    }
+
+    .mainpage-tasklist {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    #currentTask1 {
+        flex-direction: column;
+    }
+
+    #currentTask1 span {
+        width: 100%;
+    }
+
+    #current-task-button-div {
+        flex-direction: row;
+        width: 100%;
+        margin-top: 1em;
+    }
+
+    #current-task-button-div button {
+    width: 45%;
+    }
+
+    #current-goal {
+        flex-direction: column;
+    }
+
+    #current-goal button {
+        margin-top:1em;
+    }
+
+    #goal-progress {
+        width: 100%;
+        margin-top: 1em;
+    }
+
+    #content-box {
+        width: 90%;
+        height: 90%;
+    }
+
+    #content-box-bottom {
+        flex-direction: column;
+    }
+
+    #content-box-bottom input {
+        margin-bottom: 1em;
+        height: 50px;
+        width: 100%;
+
+    }
+
+    #content-box-top-right {
+        display: none;
+    }
+
+    #content-box-top-left {
+        width: 100%;
+    }
+
+    #content-box-top-left span {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #tasktype {
+        padding-bottom: 0;
+    }
+
+    #closeoverlay-btn-mobile {
+        display: flex;
+    }
+
+    #tasklist {
+        margin-top: 1em;
+    }
+
+    #goalOverlay-box {
+        width: 90%;
+        height: 90%;
+    }
+
+    #goalOverlay-content {
+        flex-direction: column !important;
+    }
+
+    #currentGoal-right {
+        width: 100%;
+        height: 12em;
+    }
+
+    #currentGoal-right button {
+        display: none !important;
+    }
+
+    #currentGoal-left { 
+        width:100%;
+    }
+
+    #date-box {
+        width: 100%;
+        height: fit-content;
+    }
+
+    #goalMobileBtn-div {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1em;
+    }
+
+    #goalMobileBtn-div button {
+        width: 45%;
+    }
+
+    .allGoals-div {
+        flex-direction: column;
+    }
+
+    .allGoals-div p{
+        font-size: 0.8em;
+    }
+    
+    .allGoals-div-left div p {
+        font-size: 0.6em;
+        margin: 0;
+    }
+
+    .allGoals-div-left, .allGoals-div-right {
+        width: 100%;
+    }
+
+    .allGoals-div-right button {
+        height: 75%;
+    }
+
+    #addGoal {
+        flex-direction: column;
+    }
+
+    #addGoal-left, #addGoal-right {
+        width: 100% !important;
+    }
+
+    #addGoal-right {
+        padding: 0 !important;
+        margin-top: 1em;
+    }
+
+    #addGoalBtn-div {
+        height: 20% !important;
+    }
+
+    #goalOverlay-top svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    #goalOverlay-btns {
+        margin-top: 1em;
+    }
+
+    #goalOverlay-content h3 {
+        height: 1.3em;
+    }
+
+    #confirm-box {
+        height: 30%;
+        width: 80%;
+    }
+
+    #goalBlackOverlayWin {
+        height: 25%;
+        width: 90%;
+    }
+    
+    #editGoal {
+        flex-direction: column;
+    }
+
+    body {
+        height: auto;
+    }
+
+    #header {
+        height: auto;
+        padding-bottom: 0;
+    }
+}
